@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                                   selectedEndStation = result;
                                 });
                             },
-                            child: stationselect(selectedEndStation), //출발역 선택
+                            child: stationselect(selectedEndStation), //도착역 선택
                             ),
                         ],
                       ),
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
-            const SizedBox(height: 20), // 흰색 박스와 버튼 사이 여백 추가
+            const SizedBox(height: 20),// 흰색 박스와 버튼 사이 여백 추가
             selectseatbutton(), // 버튼 추가 (흰색 박스 아래)
           ],
         ),
@@ -119,12 +119,53 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.circular(20)
           ),
         ),
-        onPressed: () {
+      onPressed: () {
+        if (selectedStartStation == "선택" || selectedEndStation == "선택") {
+          // 안내창 띄우기
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('오류'),
+                content: const Text('출발역과 도착역을 선택해주세요.'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('확인'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else if (selectedStartStation == selectedEndStation) {
+          // 안내창 띄우기
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('오류'),
+                content: const Text('출발역과 도착역이 같습니다.\n다른 역을 선택해주세요.'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('확인'),
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          // 정상적으로 페이지 이동
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Seatpage()),
+            MaterialPageRoute(builder: (context) => Seatpage(selectedStartStation, selectedEndStation)),
           );
-        },
+        }
+      },
         child: const Text('예매하기', style: TextStyle(color: Colors.white),),
         )
     );

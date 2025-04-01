@@ -47,7 +47,7 @@ class StartStationListPageState extends State<StartStationListPage> {
             onTap: () {
               setState(() {
                 selectedStartStation = text;
-                print(selectedStartStation); // 선택된 역을 저장
+                print(selectedStartStation);
               });
               // 선택된 역을 다른 화면으로 넘기기
               Navigator.pop(
@@ -138,8 +138,8 @@ class EndStationListPageState extends State<EndStationListPage> {
             ),
           ),
           Divider(
-            thickness: 2, // 줄 두께 (기본값 1)
-            color: Colors.grey[300], // 줄 색상
+            thickness: 2,
+            color: Colors.grey[300],
           ),
         ],
       ),
