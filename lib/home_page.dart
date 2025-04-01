@@ -76,16 +76,21 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey[400],
                           ),
                           const SizedBox(width: 50),
-                                                    GestureDetector(
-                            onTap: () {
-                              Navigator.push(
+                          GestureDetector(
+                            onTap: ()async {
+                              print("아무");
+                              final result = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EndStationListPage(),
                                   )
                                 );
+                                print("나는 $result");
+                                setState(() {
+                                  selectedEndStation = result;
+                                });
                             },
-                            child: stationselect(selectedEndStation) //도착역 선택
+                            child: stationselect(selectedEndStation), //출발역 선택
                             ),
                         ],
                       ),
