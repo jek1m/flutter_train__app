@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_train__app/home_page.dart';
+import 'package:flutter_train__app/SeatPage.dart';
+import 'package:flutter_train__app/SeatPage.dart';
 import 'package:flutter_train__app/StationListPage.dart';
 class HomePage extends StatefulWidget {
   @override
@@ -7,12 +8,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String selectedStartStation = "선택";
+  String selectedEndStation = "선택";
+
   @override
   Widget build(BuildContext context) {
     return hompageseclectbox();
   }
 
-  Scaffold hompageseclectbox() {
+  Scaffold hompageseclectbox() { //
     return Scaffold(
       appBar: AppBar(
         title: const Text('기차 예매'),
@@ -50,15 +54,20 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              Navigator.push(
+                            onTap: ()async {
+                              print("아무");
+                              final result = await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => StartStationListPage(),
                                   )
                                 );
+                                print("나는 $result");
+                                setState(() {
+                                  selectedStartStation = result;
+                                });
                             },
-                            child: stationselect("선택")
+                            child: stationselect(selectedStartStation), //출발역 선택
                             ),
                           const SizedBox(width: 50),
                           Container(
@@ -76,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                                   )
                                 );
                             },
-                            child: stationselect("선택")
+                            child: stationselect(selectedEndStation) //도착역 선택
                             ),
                         ],
                       ),
@@ -105,7 +114,12 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.circular(20)
           ),
         ),
-        onPressed: () {}, 
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Seatpage()),
+          );
+        },
         child: const Text('예매하기', style: TextStyle(color: Colors.white),),
         )
     );
