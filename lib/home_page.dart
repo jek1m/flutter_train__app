@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_train__app/home_page.dart';
+import 'package:flutter_train__app/StationListPage.dart';
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return hompageseclectbox();
@@ -43,7 +49,17 @@ class HomePage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          stationselect("선택"),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => StartStationListPage(),
+                                  )
+                                );
+                            },
+                            child: stationselect("선택")
+                            ),
                           const SizedBox(width: 50),
                           Container(
                             height: 50,
@@ -51,7 +67,17 @@ class HomePage extends StatelessWidget {
                             color: Colors.grey[400],
                           ),
                           const SizedBox(width: 50),
-                          stationselect("선택"),
+                                                    GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EndStationListPage(),
+                                  )
+                                );
+                            },
+                            child: stationselect("선택")
+                            ),
                         ],
                       ),
                     ),
@@ -99,3 +125,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
