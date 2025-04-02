@@ -1,9 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_train__app/home_page.dart';
 
 class StartStationListPage extends StatefulWidget {
   @override
@@ -36,7 +32,7 @@ class StartStationListPageState extends State<StartStationListPage> {
     );
   }
 
-  // 역 선택 시 해당 역을 선택된 역 변수에 저장
+  /// 역 선택 시 해당 역을 선택된 역 변수에 저장하는 함수
   SizedBox stationName(String text, BuildContext context) {
     return SizedBox(
       height: 50,
@@ -108,7 +104,7 @@ class EndStationListPageState extends State<EndStationListPage> {
     );
   }
 
-  // 역 선택 시 해당 역을 선택된 역 변수에 저장
+  /// 역 선택 시 해당 역을 선택된 역 변수에 저장하는 함수
   SizedBox stationName(String text, BuildContext context) {
     return SizedBox(
       height: 50,
@@ -119,7 +115,7 @@ class EndStationListPageState extends State<EndStationListPage> {
             onTap: () {
               setState(() {
                 selectedEndStation = text;
-                print(selectedEndStation); // 선택된 역을 저장
+                // print(selectedEndStation); // 선택된 역을 저장
               });
               // 선택된 역을 다른 화면으로 넘기기
               Navigator.pop(

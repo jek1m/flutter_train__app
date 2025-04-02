@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
+// 작성자 : 플러터 6기 개발 김지은
+// 작성일 : 2025.04.02
+// [Flutter 기초] 개인 과제 - 기차 예매 서비스
+
 import 'package:flutter/material.dart';
-import 'package:flutter_train__app/home_page.dart';
+import 'package:flutter_train__app/HomePage.dart';
 
 
 
